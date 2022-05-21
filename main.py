@@ -5,6 +5,7 @@ import streamlit as st
 import webbrowser
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
+from bokeh.models.widgets import Div
 
 # Scikit-Learn
 from sklearn.model_selection import train_test_split
@@ -27,9 +28,17 @@ from sklearn.linear_model             import LogisticRegression
 ###-----------------------------------------------------------------------------------------
 ### Title
 ###-----------------------------------------------------------------------------------------
-#st.set_page_config(layout="wide")
 if st.button('Hello 👋'):
-        webbrowser.open_new_tab('https://paulinomoskwa.github.io/Hello/')
+    js = "window.open('https://paulinomoskwa.github.io/Hello/')"  # New tab or window
+    #js = "window.location.href = 'https://paulinomoskwa.github.io/Hello/'"  # Current tab
+    html = '<img src onerror="{}">'.format(js)
+    div = Div(text=html)
+    st.bokeh_chart(div)
+
+# Works only locally:
+# if st.button('Hello 👋'):
+#     webbrowser.open_new_tab('https://paulinomoskwa.github.io/Hello/')
+
 st.markdown('# Scikit-Learn Classifiers 🕵️‍♂️')
 st.markdown('''Choose the dataset you want to use on the left sidebar and adjust the settings.\\
     Check out how Scikit-Learn classifiers perform! 🤓''')
